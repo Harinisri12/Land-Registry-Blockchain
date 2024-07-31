@@ -10,7 +10,7 @@ if (!supabaseUrl || !supabaseKey) {
     throw new Error('Supabase URL and Key are required');
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = await createClient(supabaseUrl, supabaseKey);
 console.log('supabase connected');
 
 const API_KEY = 'mainnet_03138ebf775639f46fe1123711fbfb40';
