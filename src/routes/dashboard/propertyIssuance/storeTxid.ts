@@ -5,13 +5,19 @@ const supabaseKey = process.env.PUBLIC_SUPABASE_ANON_KEY;
 // console.log(supabaseUrl);
 // console.log(supabaseKey);
 
-if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Supabase URL and Key are required');
-}
+// if (!supabaseUrl || !supabaseKey) {
+//     throw new Error('Supabase URL and Key are required');
+// }
 
-const supabase = await createClient(supabaseUrl, supabaseKey);
-console.log("client created....")
+// const supabase = await createClient(supabaseUrl, supabaseKey);
+// console.log("client created....")
 export async function storeTxid(propertyId: string, txid: string, latitude: string, longitude: string) {
+    if (!supabaseUrl || !supabaseKey) {
+        throw new Error('Supabase URL and Key are required');
+    }
+
+    const supabase = await createClient(supabaseUrl, supabaseKey);
+    console.log("client created....")
     const { data, error } = await supabase
         .from('transactions')
         .insert([{ propertyId, txid, latitude, longitude }]);

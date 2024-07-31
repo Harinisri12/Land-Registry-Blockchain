@@ -4,13 +4,18 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = 'https://xkrknllhmcwyhtbbnnvp.supabase.co';
 const supabaseKey = process.env.PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Supabase URL and Key are required');
-}
+// if (!supabaseUrl || !supabaseKey) {
+//     throw new Error('Supabase URL and Key are required');
+// }
 
-const supabase = await createClient(supabaseUrl, supabaseKey);
+// const supabase = await createClient(supabaseUrl, supabaseKey);
 
 export async function POST({ request }) {
+    if (!supabaseUrl || !supabaseKey) {
+        throw new Error('Supabase URL and Key are required');
+    }
+    const supabase = await createClient(supabaseUrl, supabaseKey);
+
     try {
         const { bidAmount, propertyId } = await request.json();
 

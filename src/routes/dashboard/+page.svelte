@@ -12,17 +12,22 @@
 const supabaseUrl = 'https://xkrknllhmcwyhtbbnnvp.supabase.co';
 const supabaseKey = process.env.PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Supabase URL and Key are required');
-}
+// if (!supabaseUrl || !supabaseKey) {
+//     throw new Error('Supabase URL and Key are required');
+// }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+// const supabase = createClient(supabaseUrl, supabaseKey);
 
     let email: string | null = null;
     const landAuthority: string[] = ['keerthana.birelli@gmail.com','kittu.birelli@gmail.com', 'sales@timechainlabs.io', 'authorize@example.com'];
 
      // Function to handle logout
   async function logout() {
+    if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Supabase URL and Key are required');
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
     await supabase.auth.signOut();
     window.location.href = '/'; // Redirects to the home page using href
   }

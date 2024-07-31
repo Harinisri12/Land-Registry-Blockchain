@@ -5,11 +5,11 @@ import axios from 'axios';
 const supabaseUrl = 'https://xkrknllhmcwyhtbbnnvp.supabase.co';
 const supabaseKey = process.env.PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Supabase URL and Key are required');
-}
-const supabase = await createClient(supabaseUrl, supabaseKey);
-console.log("supabase connected");
+// if (!supabaseUrl || !supabaseKey) {
+//     throw new Error('Supabase URL and Key are required');
+// }
+// const supabase = await createClient(supabaseUrl, supabaseKey);
+// console.log("supabase connected");
 
 const API_KEY = 'mainnet_03138ebf775639f46fe1123711fbfb40';
 
@@ -49,6 +49,12 @@ const fetchLatLongFromTxid = async (txid: string) => {
 };
 
 const getTransactionLocations = async () => {
+    if (!supabaseUrl || !supabaseKey) {
+        throw new Error('Supabase URL and Key are required');
+    }
+    const supabase = await createClient(supabaseUrl, supabaseKey);
+    console.log("supabase connected");
+
     try {
         console.log("Fetching data from Supabase");
         const { data, error } = await supabase.from('transactions').select('txid');
