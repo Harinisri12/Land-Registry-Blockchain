@@ -1,0 +1,21 @@
+
+contract Property {
+  bytes propertyId;
+  bytes latitude;
+  bytes longitude;
+  bytes areaCity;
+  bytes stateSelected;
+  Ripemd160 ownerPublicAddress;
+  int defaultBidAmount;
+  bytes documentUrl;
+  public function updateProperty(bytes propertyId, bytes latitude, bytes longitude, bytes areaCity, bytes stateSelected, Ripemd160 ownerPublicAddress, int defaultBidAmount) {
+    require(this.propertyId == propertyId);
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.areaCity = areaCity;
+    this.stateSelected = stateSelected;
+    this.ownerPublicAddress = ownerPublicAddress;
+    this.defaultBidAmount = defaultBidAmount;
+    require(true);
+  }
+}

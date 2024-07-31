@@ -21,7 +21,7 @@ export const actions: Actions = {
         }
         
 
-        //Ceate account using Supabase
+        //Create account using Supabase
         const supabase = event.locals.supabase;
         const { email, password } = form.data;
         const { error } = await supabase.auth.signUp({ email, password });
@@ -30,7 +30,7 @@ export const actions: Actions = {
             return setError(form, "password", "This account already exists");
         }
         else {
-            return redirect(303, "/");
+            return redirect(303, "/login");
         }
         
     },

@@ -1,7 +1,6 @@
 <script lang="ts">
   import * as Form from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
-    import { fromJSON } from "postcss";
   import { formSchema, type FormSchema } from "./schema";
   import {
     type SuperValidated,
@@ -17,9 +16,22 @@
   });
  
   const { form: formData, enhance } = form;
-  async function handleRegister(){
-    if($formData.password !== $formData.confirmPassword){
-        alert("Password do not match");
+
+  // async function handleRegister(){
+  //   if($formData.password !== $formData.confirmPassword){
+  //       alert("Password do not match");
+  //   }
+  // }
+
+    async function handleRegister(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    if ($formData.password !== $formData.confirmPassword) {
+      alert("Passwords do not match!");
+    } else {
+      // Submit the form programmatically if passwords match
+      const formElement = event.target.closest("form");
+      formElement.submit();
     }
   }
 

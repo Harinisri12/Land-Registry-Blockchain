@@ -4,6 +4,7 @@ import { fail, redirect } from "@sveltejs/kit";
 import { setError, superValidate } from "sveltekit-superforms";
 import { formSchema } from "./schema";
 import { zod } from "sveltekit-superforms/adapters";
+// import { serialize } from 'cookie';
 
 export const load: PageServerLoad = async () => {
     return {
@@ -30,7 +31,10 @@ export const actions: Actions = {
             return setError(form, "password", "Invalid email or password");
         }
         else {
-            return redirect(303, "/");
+            // return redirect(303, "/");
+            const url = new URL('/dashboard', event.url);
+            url.searchParams.set('email', email);
+            return redirect(303, url.toString());
         }
         
     },
